@@ -1,0 +1,52 @@
+SELECT *
+FROM cities;
+
+SELECT *
+FROM cities
+INNER JOIN countries;
+
+SELECT *
+FROM cities
+INNER JOIN countries;
+ON cities.country_code = countries.code;
+
+SELECT cities.name AS city, countries.name AS country, countries.region
+FROM cities
+INNER JOIN countries
+ON cities.country_code = countries.code;
+
+SELECT c.code, country_code, name, year, inflation_rate 
+FROM countries AS c
+INNER JOIN economies AS e
+ON c.code = e.code;
+
+SELECT c.code, country_code, l.name, year, inflation_rate 
+FROM countries AS c
+INNER JOIN economies AS e
+USING (code);
+
+SELECT c.name AS country, l.name AS language
+FROM countries AS c
+INNER JOIN languages AS l
+USING (code);
+
+SELECT l.name AS language, c.name AS country
+FROM countries AS c
+INNER JOIN languages AS l
+USING (code)
+ORDER BY language;
+
+SELECT name, e.year, fertility_rate, e.unemployment_rate
+FROM countries AS c
+INNER JOIN population AS p
+ON c.code = p.country_code
+INNER JOIN ecconomies AS e
+ON c.code = e.code;
+
+SELECT name, e.year, fertility_rate, e.unemployment_rate
+FROM countries AS c
+INNER JOIN population AS p
+ON c.code = p.country_code
+INNER JOIN ecconomies AS e
+ON c.code = e.code
+AND p.year = e.year;
